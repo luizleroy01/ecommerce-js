@@ -151,7 +151,8 @@ app.put('/updateProduct', async (req, res) => {
   
       await record.destroy();
   
-      res.send(`${record.id} ${record.name} - Deleted successfully`);
+      //res.send(`${record.id} ${record.name} - Deleted successfully`);
+      res.redirect('/')
     } catch (error) {
       res.send(error);
     }

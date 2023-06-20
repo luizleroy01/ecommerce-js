@@ -3,18 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/style/global.css">
+    <link rel="stylesheet" href="./src/pages/visualizaProdutos/style.css">
     <title>Document</title>
 </head>
 <body>
-    <% for( let i = 0 ; i < records.length ; i++){ %>
-        <div >
-            <div>
-                <h1><%= records[i].name %></h3>
-                <h2><%= records[i].price %></h2>
-                <p><%- records[i].amount %> </p>
-                <p><%- records[i].description %> </p>
-            </div> 
-        </div>
-    <% } %>
+    <div class="center ">
+        <table class="tabela">
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>PREÇO</th>
+                <th>QUANTIDADE</th>
+                <th>DESCRIÇÃO</th>
+            </tr>
+            <% for( let i = 0 ; i < records.length ; i++){ %>
+                <tr>
+                    <td>
+                        <h3><%= records[i].id %></h3>
+                    </td>
+                    <td>
+                        <h3><%= records[i].name %></h3>
+                    </td>
+                    <td>
+                        <h3><%= records[i].price %></h3>
+                    </td>
+                    <td>
+                        <h3><%= records[i].amount %></h3>
+                    </td>
+                    <td>
+                        <h3><%= records[i].description %></h3>
+                    </td>   
+                </tr>
+            <% } %>
+        </table>
+        
+    </div>
+    
 </body>
 </html>
