@@ -88,8 +88,20 @@ app.get('/produtos',async(req,res)=>{
     }
 })
 
-app.get('/editar',(req,res)=>{
-    res.render('editarProduto',{})
+app.get('/editar',async(req,res)=>{
+        try{
+          const params = req.body
+          
+          const record = await products.findAll();
+          if(record){
+              res.render('editarProduto',{records:record})
+          }else{
+              res.send('There are no products stored yet')
+          }
+          
+      }catch(error){
+          res.send(error)
+      }
 })
 app.put('/updateProduct', async (req, res) => {
     try {
@@ -107,7 +119,7 @@ app.put('/updateProduct', async (req, res) => {
         return;
       }
   
-      const properties = ['name', 'price', 'amaount', 'description'];
+      const properties = ['name', 'price', 'amount', 'description'];
   
       const check = properties.some((property) => {
         return property in params;

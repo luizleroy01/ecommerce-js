@@ -5,40 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/style/global.css">
     <link rel="stylesheet" href="./src/pages/editarProduto/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-    <div class="center form">
-        <h1 class="title">EDITAR PRODUTO</h1>
-        <form action = "/updateProduct" method="post">
-            <table>
-                <input type="hidden" name="_method" value="put">
+    <div class="center ">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>NOME</th>
+                <th>PREÇO</th>
+                <th>OPERAÇÃO</th>
+            </tr>
+            <% for( let i = 0 ; i < records.length ; i++){ %>
                 <tr>
-                    <td><labe for="id">Id do produto que deseja editar:</labe></td>
-                    <td><input class="campo input_texto" type="number" name="id" placeholder="id do produto" required</td>
+                    <td>
+                        <h3><%= records[i].id %></h3>
+                    </td>
+                    <td>
+                        <h3><%= records[i].name %></h3>
+                    </td>
+                    <td>
+                        <h3><%= records[i].price %></h3>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary"><a href="/src/pages/updateProduto?id=<%=records[i].id%>" class="text">Editar</a></button>
+                    </td>  
                 </tr>
-                <tr>
-                    <td><labe for="name">Nome:</labe></td>
-                    <td><input class="campo input_texto" type="text" name="name" placeholder="Nome do produto" required</td>
-                </tr>
-                <tr>
-                    <td><labe for="price">Preço:</labe></td>
-                    <td><input class="campo input_texto" type="text" name="price" placeholder="Preço do produto" required</td>
-                </tr>
-                <tr>
-                    <td><labe for="amount">Quantidade:</labe></td>
-                    <td><input class="campo input_texto" type="text" name="amount" placeholder="Quantidade do produto" required</td>
-                </tr>
-                <tr>
-                    <td><labe for="description">Description:</labe></td>
-                    <td><textarea class="campo" name="description" cols=70 rows=8>Digite a descrição do produto</textarea></td>
-                </tr>
-                <tr>
-                    <td><input class="botao" type = "submit" value="confirmar"/></td>
-                </tr>
-            </table>
-    
-        </form>
+            <% } %>
+        </table>
+        
     </div>
     
 </body>
