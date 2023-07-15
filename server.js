@@ -103,6 +103,27 @@ app.get('/editar',async(req,res)=>{
           res.send(error)
       }
 })
+app.get('/formUpdateProduct/:id',async(req,res)=>{
+  try {
+    const params = req.body;
+
+    if (!params) {
+      res.send(`Missing 'id' in request body`);
+      return;
+    }
+
+    const record = await products.findByPk(req.params.id);
+
+    if (!record) {
+      res.send(`Product ID not found.`);
+      return;
+    }
+    res.render('formUpdateProduto',{record:record});
+
+  }catch(error){
+    res.send(error)
+  }
+})
 app.put('/updateProduct', async (req, res) => {
     try {
       const params = req.body;
@@ -138,7 +159,7 @@ app.put('/updateProduct', async (req, res) => {
   
       await record.save();
   
-      res.send(`${record.id} ${record.name} - Updated successfully`);
+      res.redirect('/')
     } catch (error) {
       res.send(error);
     }

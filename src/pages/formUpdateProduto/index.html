@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/style/global.css">
+    <link rel="stylesheet" href="/src/pages/formUpdateProduto/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="center form">
+        <h2 class="title">EDIÇÃO DO PRODUTO</h2>
+        <form action = "/updateProduct" method="post">
+            <input type="hidden" name="_method" value="put" />
+            <input type="hidden" name="id" value="<%=record.id %>" />
+            <table>
+                <tr>
+                    <td><labe for="name">Nome:</labe></td>
+                    <td><input class="campo input_texto"
+                         type="text" name="name" 
+                         placeholder="Nome do produto"
+                         value="<%=record.name %>"
+                        required></td>
+                </tr>
+                <tr>
+                    <td><labe for="price">Preço:</labe></td>
+                    <td><input class="campo input_texto"
+                         type="text" name="price"
+                          placeholder="Preço do produto"
+                          value="<%=record.price %>"
+                          required</td>
+                </tr>
+                <tr>
+                    <td><labe for="amount">Quantidade:</labe></td>
+                    <td><input class="campo input_texto"
+                         type="text" name="amount"
+                         placeholder="Quantidade do produto"
+                         value="<%=record.amount %>" 
+                         required</td>
+                </tr>
+                <tr>
+                    <td><labe for="description">Descrição:</labe></td>
+                    <td><textarea class="campo"
+                         name="description"
+                          cols=70 rows=5
+                          ><%=record.description %></textarea></td>
+                </tr>
+                <tr>
+                    <td><input class="botao" type = "submit" value="confirmar"/></td>
+                </tr>
+            </table>
+    
+        </form>
+    </div>
+</body>
+</html>

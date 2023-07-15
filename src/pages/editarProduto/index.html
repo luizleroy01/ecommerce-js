@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="center ">
+    <div class="container">
         <table class="table">
             <tr>
                 <th>ID</th>
@@ -29,7 +29,7 @@
                         <h3><%= records[i].price %></h3>
                     </td>
                     <td>
-                        <button class="btn btn-primary"><a href="/src/pages/updateProduto?id=<%=records[i].id%>" class="text">Editar</a></button>
+                        <button class="btn btn-primary"><a href="/formUpdateProduct/<%=records[i].id%>" class="text">Editar</a></button>
                     </td>  
                 </tr>
             <% } %>
