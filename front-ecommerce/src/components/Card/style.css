@@ -1,0 +1,27 @@
+
+.cardProdutos{
+    background-color: aquamarine;
+    align-items: center;
+    display:inline-flex;
+    border:1px solid black;
+    border-radius: 5px;
+    margin:0 10px;
+    padding:10px;
+    width:20%;
+    
+}
+
+.info_produtos{
+    justify-content: center;
+    background-color:white !important;
+    width:100%;
+}
+.title{
+    letter-spacing: 3.5px;
+    width:100%;
+}
+.formato{
+    display:flexbox;
+    justify-content: center;
+    margin:0 auto;
+}

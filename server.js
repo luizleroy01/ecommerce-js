@@ -1,15 +1,20 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
-const products = require('./src/database/tables/product')
+//const products = require('./src/database/tables/product')
 const methodOverride = require('method-override')
 const app = express()
 const port = 5000
+const cors = require('cors')
 
+app.use(cors({
+  origin:"*"
+}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(express.json())
 app.use(methodOverride(req => req.body._method));
 
 
@@ -20,6 +25,47 @@ app.set('view engine','html');
 app.use('/src',express.static(path.join(__dirname,'src')));
 app.set('views',path.join(__dirname,'/src/pages'));
 
+const produtos = [
+  {
+    id:1,
+    name:"smartphone",
+    price:1000,
+    amount:24,
+  },
+  {
+    id:2,
+    name:"Playstation",
+    price:4000,
+    amount:24,
+  },
+  {
+    id:3,
+    name:"computer",
+    price:1500,
+    amount:30,
+  },
+  {
+    id:4,
+    name:"books",
+    price:2000,
+    amount:50,
+  }
+]
+
+//teste main page products
+app.get('/',(req,res)=>{
+  res.json({data:produtos});
+})
+
+//teste inserção de produto
+//em caso de sucesso de inserção adicionar mudando 
+//o estado de um array produtos em App.js
+app.post('/new-product',(req,res)=>{
+  console.log(req.body);
+  produtos.push(req.body);
+  //res.json({data:req.body});
+})
+/*
 //testing database sync
 app.get('/syncDatabase',async(req,res)=>{
     const database = require('./src/database/db')
@@ -190,7 +236,7 @@ app.put('/updateProduct', async (req, res) => {
       res.send(error);
     }
   });
-  
+  */
 
 app.get('/',(req,res)=>{
     res.render('home',{})
