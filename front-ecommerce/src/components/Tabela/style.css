@@ -1,0 +1,36 @@
+table{
+   align-items: center;
+   background-color:azure;
+   text-align: center;
+   margin:0 auto;
+   width:60%;
+   border-radius: 5px;
+   border: 1px solid black;
+   
+}
+table tr:hover,td:hover{
+    background-color:aquamarine;
+}
+table thead{
+    background-color: black;
+    color: white;
+    padding:10px;
+    height:40px;
+}
+.bDelete{
+    background-color: red;
+}
+.bDelete:hover{
+    background-color: crimson;
+    color: white;
+}
+.bEdit{
+    background-color: blue;
+}
+.bEdit:hover{
+    background-color: dodgerblue;
+    color: white;
+}
+button{
+    margin:10px;
+}

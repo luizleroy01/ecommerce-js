@@ -63,7 +63,19 @@ app.get('/',(req,res)=>{
 app.post('/new-product',(req,res)=>{
   console.log(req.body);
   produtos.push(req.body);
-  //res.json({data:req.body});
+  res.status(200).json({message:"Inserido com sucesso"})
+})
+app.put('/update-product',(req,res)=>{
+  const product = req.body
+
+  produtos.map((prod)=>{
+    if(prod.id == product.id){
+      prod.name = product.name
+      prod.price = product.price
+      prod.amount = product.amount
+    }
+  })
+  res.status(200).json({message:"Atualizado com sucesso"})
 })
 /*
 //testing database sync

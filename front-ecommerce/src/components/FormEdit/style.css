@@ -1,0 +1,8 @@
+.bVoltar{
+    background-color: red;
+    width:10% !important;
+}
+.bVoltar:hover{
+    background-color: crimson;
+    color:white;
+}

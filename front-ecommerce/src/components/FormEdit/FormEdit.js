@@ -1,19 +1,17 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState} from'react'
 import './style.css'
 
-const FormP = ({handleProdutos}) => {
-    const [idp,setIdp] = useState(0)
-    const [name,setName] = useState("")
-    const [preco,setPreco] = useState("")
-    const [qtd,setQtd] = useState("")
-    const [insert,setInsert] = useState(false)
-   
-
+const FormEdit = ({produto,handleFormEdit}) => {
+    const [id,setId] = useState(produto.id)
+    const [name,setName] = useState(produto.name)
+    const [preco,setPreco] = useState(produto.price)
+    const [qtd,setQtd] = useState(produto.amount)
+    
     const sendProduct = async(product)=>{
-        const url = "http://localhost:5000/new-product"
+        const url = "http://localhost:5000/update-product"
         const res = await fetch(url,{
-            method:'POST',
+            method:'PUT',
             headers:{
                 'Content-Type':'application/json'
             },
@@ -31,13 +29,11 @@ const FormP = ({handleProdutos}) => {
             price:preco,
             amount:qtd
         }
-        
-
         const resposta = sendProduct(product)
         resposta.then((message) =>{
             console.log(message.message)
             console.log(product)
-            handleProdutos(product)   
+            handleFormEdit(false,produto)  
         })
         .catch((erro)=>{
             console.log(erro)
@@ -45,29 +41,23 @@ const FormP = ({handleProdutos}) => {
         setName("")
         setPreco("")
         setQtd("")
-        setIdp(null)
-        setInsert(false)
+        setId(null)
 
-        
     }
     
   return (
     <div className='formulario'>
-        {!insert && (
-            <button onClick={()=>setInsert(true)}>Inserir</button>
-        )}
-        
-        {insert && (
+            <button 
+                className='bVoltar' 
+                onClick={()=>handleFormEdit(false,produto)}>
+                    Voltar
+            </button>
+
             <form onSubmit={handleSubmit}>
-            <label>
-                Id:
-                <input type="number" 
-                name="idp"
-                value={idp}
-                onChange={(e)=>setIdp(e.target.value)} 
-                placeholder="Digite seu id"
-                required />
-            </label>
+            <input type="hidden" 
+            name="idp"
+            value ={produto.id}
+            />
             <label>
                 Nome:
                 <input type="text" 
@@ -95,12 +85,10 @@ const FormP = ({handleProdutos}) => {
                 placeholder="Digite a quantidade"
                 required />
             </label>
-            <input id="id01" type="submit"value="Inserir"/>
+            <input id="id01" type="submit"value="Atualizar"/>
         </form>
-        )}
-        
     </div>
   )
 }
 
-export default FormP
+export default FormEdit
