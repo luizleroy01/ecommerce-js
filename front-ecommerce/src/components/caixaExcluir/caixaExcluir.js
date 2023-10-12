@@ -1,21 +1,18 @@
 import React from 'react'
 
-const caixaExcluir = ({produto}) => {
-    const url = 'http://localhost:5000/delete-product'
+const CaixaExcluir = ({produto}) => {
+    const url = `http://localhost:5000/delete-product`
 
     const sendData = async ()=>{
         const response = await fetch(url,{
-            method:'DELETE',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(produto)
+            method:'DELETE', 
         })
-        return response
+        return response;
     }
     const handleSubmit = () => {
+        console.log("chamou handleSubmit")
         console.log(produto)
-        const resposta = sendData()
+        const resposta = sendData();
         resposta.then((message)=>{
             console.log(message)
             //função para excluir produto no front end
@@ -26,13 +23,15 @@ const caixaExcluir = ({produto}) => {
     }
   return (
     <div>
+        <form onSubmit={handleSubmit}>
         <p>Tem certeza que deseja excluir o produto 
             {produto.name} de id {produto.id}
         </p>
-        <button onClick={handleSubmit}>Sim</button>
+        <input type="submit" value="Sim" />
         <button>Não</button>
+        </form>
     </div>
   )
 }
 
-export default caixaExcluir
+export default CaixaExcluir;

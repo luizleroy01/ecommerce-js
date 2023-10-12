@@ -33,7 +33,7 @@ const FormEdit = ({produto,handleFormEdit}) => {
         resposta.then((message) =>{
             console.log(message.message)
             console.log(product)
-            handleFormEdit(false,produto)  
+            handleFormEdit(false,product)  
         })
         .catch((erro)=>{
             console.log(erro)

@@ -5,7 +5,7 @@ import Card from '../components/Card'
 import FormP from '../components/FormP'
 import Tabela from '../components/Tabela'
 import FormEdit from '../components/FormEdit/FormEdit'
-import caixaExcluir from '../components/caixaExcluir/caixaExcluir'
+import CaixaExcluir from '../components/caixaExcluir/caixaExcluir'
 
 
 const Home = () => {
@@ -38,7 +38,11 @@ const Home = () => {
         if(state){
             setEdit(state)
             setProdutoEdit(produto)
+            
+        }else{
             let prods = [...produtos]
+            console.log(produtos)
+            console.log("atualizado", produto)
             prods.map((prod)=>{
                 if(prod.id == produto.id){
                     prod.name = produto.name
@@ -47,7 +51,6 @@ const Home = () => {
                 }
             })
             setProdutos(prods)
-        }else{
             setEdit(false)
             setProdutoEdit([])
         }
@@ -57,9 +60,9 @@ const Home = () => {
         if(state){
             setDel(state)
             setProdutoDel(produto)
-            let prods = [...produtos]
-            prods = prods.filter(prod=>(prod.id != produto.id))
-            setProdutos(prods)
+            //let prods = [...produtos]
+            //prods = prods.filter(prod=>(prod.id != produto.id))
+            //setProdutos(prods)
         }else{
             setDel(false)
             setProdutoDel([])
@@ -76,7 +79,7 @@ const Home = () => {
         produto={produtoEdit} 
         handleFormEdit={handleFormEdit}/>)}
 
-        {del && (<caixaExcluir produto={produtoDel}/>)}
+        {del && (<CaixaExcluir produto={produtoDel}/>)}
 
         {!produtos && <p>Ainda não há produtos cadastrados ... :(</p>}
 
