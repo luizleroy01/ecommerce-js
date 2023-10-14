@@ -1,11 +1,15 @@
 import React from 'react'
 import {useState,useEffect} from 'react'
 import axios from 'axios'
-import Card from '../components/Card'
 import FormP from '../components/FormP'
 import Tabela from '../components/Tabela'
 import FormEdit from '../components/FormEdit/FormEdit'
 import CaixaExcluir from '../components/caixaExcluir/caixaExcluir'
+import SearchBar from '../components/SearchBar/SearchBar'
+import handleProdutos from '../utils/handleProdutos'
+import handleFormEdit from '../utils/handleFormEdit'
+import deleteProduto from '../utils/deleteProduto'
+import dadosBusca from '../utils/buscaDados'
 
 
 const Home = () => {
@@ -27,51 +31,13 @@ const Home = () => {
         searchData()
     },[url])
 
-    const handleProdutos = (produto)=>{
-        const prod = [...produtos];
-        prod.push(produto)
-        
-        setProdutos(prod)
-    };
-    
-    const handleFormEdit = (state,produto)=>{
-        if(state){
-            setEdit(state)
-            setProdutoEdit(produto)
-            
-        }else{
-            let prods = [...produtos]
-            console.log(produtos)
-            console.log("atualizado", produto)
-            prods.map((prod)=>{
-                if(prod.id == produto.id){
-                    prod.name = produto.name
-                    prod.price = produto.price
-                    prod.amount = produto.amount
-                }
-            })
-            setProdutos(prods)
-            setEdit(false)
-            setProdutoEdit([])
-        }
-        
-    }
-    const deleteProduto = (state,produto)=>{
-        if(state){
-            setDel(state)
-            setProdutoDel(produto)
-            //let prods = [...produtos]
-            //prods = prods.filter(prod=>(prod.id != produto.id))
-            //setProdutos(prods)
-        }else{
-            setDel(false)
-            setProdutoDel([])
-        }
-    }
   return (
     <div>
         <h1>Home</h1>
         <h2>Produtos</h2>
+
+        <SearchBar dadosBusca={dadosBusca}/>
+
         {!edit && !del && (<FormP 
         handleProdutos={handleProdutos}/>)}
 
@@ -79,7 +45,9 @@ const Home = () => {
         produto={produtoEdit} 
         handleFormEdit={handleFormEdit}/>)}
 
-        {del && (<CaixaExcluir produto={produtoDel}/>)}
+        {del && (<CaixaExcluir
+         produto={produtoDel}
+         deleteProduto={deleteProduto}/>)}
 
         {!produtos && <p>Ainda não há produtos cadastrados ... :(</p>}
 
@@ -90,5 +58,4 @@ const Home = () => {
     </div>
   )
 }
-
 export default Home

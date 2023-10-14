@@ -1,15 +1,17 @@
 table{
    align-items: center;
-   background-color:azure;
+   background-color:#edf0f3;
    text-align: center;
    margin:0 auto;
    width:60%;
    border-radius: 5px;
    border: 1px solid black;
+   border-collapse: collapse;
    
 }
+
 table tr:hover,td:hover{
-    background-color:aquamarine;
+    background-color:#d3d4d6;
 }
 table thead{
     background-color: black;
