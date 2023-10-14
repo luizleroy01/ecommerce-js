@@ -6,6 +6,15 @@ const methodOverride = require('method-override')
 const app = express()
 const port = 5000
 const cors = require('cors')
+//const database = require('./src/database/db')
+
+const pgp = require('pg-promise')();
+const connectionURL = 'postgres://mxitrgdt:d39SfZMBOq7HzQTdG899Qfm40sD119_7@isabelle.db.elephantsql.com/mxitrgdt'
+
+const db = pgp(connectionURL);
+
+
+
 
 app.use(cors({
   origin:"*"
@@ -46,7 +55,19 @@ let produtos = [
     amount:50,
   }
 ]
-
+app.get('/dados',(req,res)=>{
+  db.query('SELECT * FROM products')
+  .then(data => {
+    console.log('Data:', data);
+    res.json({data: data});
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  })
+  .finally(() => {
+    pgp.end(); // Close the connection pool
+  });
+})
 //teste main page products
 app.get('/',(req,res)=>{
   res.json({data:produtos});
@@ -83,6 +104,7 @@ app.delete('/delete-product',(req,res)=>{
 
 app.get('/',(req,res)=>{
     res.render('home',{})
+    
 })
 
 app.listen(port,()=>{
