@@ -1,0 +1,1 @@
+export const stringConnection = 'postgres://mxitrgdt:d39SfZMBOq7HzQTdG899Qfm40sD119_7@isabelle.db.elephantsql.com/mxitrgdt'
