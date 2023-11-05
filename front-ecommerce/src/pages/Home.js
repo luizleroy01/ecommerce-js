@@ -1,4 +1,5 @@
 import React from 'react'
+import CardProdutos from '../components/cardProdutos/CardProdutos'
 
 const Home = () => {
   return (
@@ -7,11 +8,17 @@ const Home = () => {
         <p>Página inicial do cliente</p>
         <div>
             <section>
-
+              <div>
+                <h2>Produtos</h2>
+                <CardProdutos/>
+              </div>
             </section>
             <section>
 
             </section>
+            <footer>
+
+            </footer>
         </div>
     </div>
   )
